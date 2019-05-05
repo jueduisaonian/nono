@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        body,div,ul,li,ol,dl,dt,p,dd,img,input,a,span,h1,h2,h3,h4{padding:0; margin:0; border:0; list-style:none;}
+        .wrapper{width:1000px; height: 475px; margin: 0 auto; margin-top: 100px;}
+        .tab{ border:1px solid #ddd; border-bottom: 0; height: 36px; width: 320px;}
+        .tab li{ position: relative; float: left; width: 80px; height: 34px; line-height: 34px; text-align: center; cursor: pointer;
+            border-top:4px solid #fff;}
+        .tab span{ position: absolute;right: 0;top:10px;background: #ddd;width: 1px;height: 14px;overflow: hidden; }
+        .products{ width: 1002px;border:1px solid #ddd;height: 476px;}
+        .products .main{float: left;display: none;}
+        .products .main.selected{display: block;}
+        .tab li.active{border-color: red; border-bottom: 0;}
+    </style>
+    <script type="text/javascript" src="jquery-1.11.1.min.js"></script>
+ 	
+</head>
+<body>
+    <div class="wrapper">
+        <ul class="tab">
+            <li class="tab-item active">国际大牌<span>◆</span></li>
+            <li class="tab-item">国妆名牌<span>◆</span></li>
+            <li class="tab-item">清洁用品<span>◆</span></li>
+            <li class="tab-item">男士精品</li>
+        </ul>
+        <div class="products">
+            <div class="main selected">
+                <a href="###"><img src="imgs/guojidapai.jpg" alt=""/></a>
+            </div>
+            <div class="main">
+                <a href="###"><img src="imgs/guozhuangmingpin.jpg" alt=""/></a>
+            </div>
+            <div class="main">
+                <a href="###"><img src="imgs/qingjieyongpin.jpg" alt=""/></a>
+            </div>
+            <div class="main">
+                <a href="###"><img src="imgs/nanshijingpin.jpg" alt=""/></a>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>
+<script>
+	//找到要操作的标题和内容
+	let $list = $(".tab li");
+	let $cons = $(".main");
+	//为多个标题添加事件
+	$list.click( function(){
+		//先排他
+/*		$list.removeClass("active");
+		$cons.removeClass("selected");
+		//为当前操作的标题添加样式 
+		$(this).addClass("active");
+		
+		//获取当前操作的标题下标
+		let index = $(this).index();
+		//操作index对应的内容显示
+		$cons.eq( index ).addClass( "selected" );*/
+		
+		//方式二 ： 操作当前的元素  清空除了当前元素的其它兄弟元素
+		$(this).addClass("active").siblings().removeClass("active");
+		let index = $(this).index();
+		$cons.eq(index).addClass("selected")
+					   .siblings()
+					   .removeClass("selected");
+	} )
+</script>
